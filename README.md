@@ -1,10 +1,10 @@
-= JBL - JSON Business Language
+# JBL - JSON Business Language
 
 Because JSON really does mean Universal.
 
 WARNING! THIS IS AN EXPERIMENT AND IS NO WHERE NEAR DRAFT STATUS... YET!
 
-== Introduction
+## Introduction
 
 JBL is a consensus based standard to create and communicate business documents in an easy to use and down to earth language. The key focus is simplicity and portability, but with advanced security definitions built into the language to deal with digital signatures, digests, and encryption.
 
@@ -19,12 +19,12 @@ JSON Schema is used to describe each type of JBL Object.
 
 The standard is based on a number of different source, but in large part the very feature complete UBL standard by OASIS forms a basis for most object definitions.
 
-== Vocabulary
+## Vocabulary
 
 
 
 
-== JBL Document
+## JBL Document
 
 A JBL Document is the basic building block to be able to communicate using JBL. It is the first layer of a file o stream used to pass the JBL object from one person or service to another. At the highest level, it is a simple JSON object consisting of two properties:
 
@@ -80,16 +80,16 @@ A typical JBL Document may look something like the following:
       }
     }
 
-=== Header
+### Header
 
 The JBL Document header is used to provide the reader, human or computer, to determine important information about the document.
 
 
-=== Security and Data Integrety
+### Security and Data Integrety
 
 Unlike many other standards that address data security through patches or additional standards, data integrety and security are required features for any JBL implementation.
 
-==== Preparing the Document for Hashing
+#### Preparing the Document for Hashing
 
 To be able to digitally sign or create a digest of a document, it is essential to have a consistent method of representing the same data in exactly the same way everywhere. Without this, a single bit out of place will cause the document to be un-verifiable.
 
@@ -138,21 +138,21 @@ To summarize, in JBL, a document is prepared for hashing by:
  * ignoring special digest, signature, and encryption objects in the header.
 
 
-==== Digests
+#### Digests
 
 
-==== Digital Signatures
+#### Digital Signatures
 
 
-==== Encryption
-
-
-
-==== Encrption and Signing Together
+#### Encryption
 
 
 
-== JBL Object
+#### Encrption and Signing Together
+
+
+
+## JBL Object
 
 A JBL Object is a regular JSON object that conforms to a specific JSON Schema defined by the JBL standard.
 
@@ -167,13 +167,13 @@ Objects primarily consist of properties of basic types defined by JSON:
 In addition to the basic JSON types, JBL adds the concept of "object type through property". This is to say, the property or key used to point to the object, tells us which schema is used to describe the contents. The following section on JBL Schema describes object types.
 
 
-=== JBL Schema
+### JBL Object Schema
 
 
 
 
 
-=== Handling Date and Time
+### Handling Date and Time
 
 Given that JSON has no standard way of dealing with dates, times, and timestamps, JBL provides its own simple convention on how to handle these property types using suffixes. The following suffixes should be used:
 
@@ -182,4 +182,8 @@ Given that JSON has no standard way of dealing with dates, times, and timestamps
  * `Time` - the hours, minutes, and seconds of a time, for example: "12:32:12" or "12:32". Again, mainly used for human reference.
 
 
-=== Schema Library
+### Schema Library
+
+Available in the schemas directory.
+
+
