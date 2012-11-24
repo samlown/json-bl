@@ -1,0 +1,24 @@
+{
+  "name": "invoice",
+  "description": "A document claiming payment for goods or services supplied under conditions agreed between the supplier and the customer. In most cases this document describes the actual financial commitment of goods or services ordered from the supplier.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Identity code to uniquily locate the invoice in the source system."
+      "required": false
+    },
+    "code": {
+      "type": "string",
+      "description": "A code uniquely identifying the invoice for the supplier. Regional laws will typically require this be a consecutive code.",
+      "required": true
+    },
+    "issue_date": {
+      "type": "string",
+      "description": "The date this invoice was issued and is legally binding",
+      "required": true
+    }
+
+
+
+  }
+}
