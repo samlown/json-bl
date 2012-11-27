@@ -6,18 +6,23 @@ WARNING! THIS IS AN EXPERIMENT AND IS NO WHERE NEAR DRAFT STATUS... YET!
 
 ## Introduction
 
-JBL is a consensus based standard to create and communicate business documents in an easy to use and down to earth language. The key focus is simplicity and portability, but with advanced security definitions built into the language to deal with digital signatures, digests, and encryption.
+JBL is a consensus based standard to create and communicate documents relating to business. The key focus is simplicity and portability, but with advanced security definitions built into the language to deal with complex issues like digital signatures, digests, and encryption.
 
-The JBL standard consists of the following key components:
+Application interoparability is a major problem which is becoming even more accute as web services sprout up offering more consumer choice. JBL attempts to ease some of these pains by defining a set of JSON schema documents that can be used to export, import, and send business documents between accounts and projects. It should be easy for example to send an invoice from your accounting platform to that of your client and have that data automatically validated with a digital signature and stored for an accountant to review later.
 
- * Objects, these are the building blocks for the actual information,
- * Documents, for sending the objects from one place to another,
- * Validators to ensure the Documents and Objects they contain are valid, and that all signatures and digests are correct, and,
- * Builders, used to construct a Document from a root object including helpers for validation and digest/signature generation.
+A major part of any great standard are the tools that are available to build and validate the documents it defines. JBL tries to avoid the usual disconnection between the tools and documentation by providing libraries for multiple platforms from the start, as part of the standard. It should be easy to build and parse JBL documents that require only a few extra steps to take advantage of complex yet increadibly important features like digital signatures.
 
-JSON Schema is used to describe each type of JBL Object.
+The JBL Standard is essentially composed of:
 
-The standard is based on a number of different source, but in large part the very feature complete UBL standard by OASIS forms a basis for most object definitions.
+ * JSON Schema for building business objects, the information building blocks,
+ * documents, for sending the objects from one place to another securly, and
+ * multi-platform libraries, for validating and building documents.
+
+
+## Contributing
+
+JBL is a collaborative project. If you'd like to see your own schema or a change implemented, make the change yourself and send a github pull request.
+
 
 ## Vocabulary
 
@@ -29,7 +34,7 @@ The standard is based on a number of different source, but in large part the ver
 A JBL Document is the basic building block to be able to communicate using JBL. It is the first layer of a file o stream used to pass the JBL object from one person or service to another. At the highest level, it is a simple JSON object consisting of two properties:
 
  * `header`, a JBL Object of type `header` containing meta-data describing the real information paylaod, and
- * the object, a property whose name matches the type of JBL Object that forms the base of the document.
+ * a JBL Object payload.
 
 While the JBL standard encourages the use of known object types, the reality is that any payload may be included after the header.
 
@@ -39,8 +44,11 @@ A typical JBL Document may look something like the following:
       "header": {
         "language": "JBL",
         "version": "0.1.0",
-        "objectType": "invoice",
-        "generator": "autofiscal.com",
+        "generator": "Some App <application.com>",
+        "payload": {
+          "key": "invoice"
+          "schema": "invoice",
+        },
         "authors": [
           {
             "alias": "sam",

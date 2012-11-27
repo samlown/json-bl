@@ -25,10 +25,21 @@
       "description": "The JBL version used to describe the document.",
       "required": true
     },
-    "objectType": {
-      "type": "string",
-      "description": "Name of the document's payload property.",
-      "required": true
+    "payload": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "The key of the payload object that should be read.",
+          "required": true
+        },
+        "schema": {
+          "type": "string",
+          "description": "The schema to be used to interpret the payload object.",
+          "required": false
+        }
+      }
     },
     "generator": {
       "type": "string",
