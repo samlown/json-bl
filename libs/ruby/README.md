@@ -1,3 +1,0 @@
-= JBL Ruby Library
-
-
