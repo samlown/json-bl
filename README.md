@@ -29,7 +29,15 @@ JBL is a collaborative project. If you'd like to see your own schema or a change
 ## Vocabulary
 
 
+## Schema
 
+## CamelCase vs snake_case
+
+Why we use snake case or underscores:
+
+ * Easier to read, hence less chance of mistakes.
+ * Consistent file system naming, regardless of case sensitivity.
+ * Matches convention of naming database columns or properties (this is a storage format!)
 
 ## JBL Document
 
@@ -59,12 +67,12 @@ A typical JBL Document may look something like the following:
           }
         ],
         "history": {
-          "createdAt": "2012-11-23T12:34:00Z",
-          "updatedAt": "2012-11-23T12:34:00Z",
+          "created_at": "2012-11-23T12:34:00Z",
+          "updated_at": "2012-11-23T12:34:00Z",
           "changes": [
             {
-              "byAlias": "sam",
-              "createdAt": "2012-11-23T12:34:00Z",
+              "by_alias": "sam",
+              "created_at": "2012-11-23T12:34:00Z",
               "version": "0.1.0",
               "description": "Initial version"
             }
@@ -78,10 +86,10 @@ A typical JBL Document may look something like the following:
         "signature" {
           "algorithm": "X509-RSA-SHA1",
           "value": ".....",
-          "x509Data": {
+          "x509_data": {
             "serial": {
-              "issuerName": "....",
-              "serialNumber": "....."
+              "issuer_name": "....",
+              "serial_number": "....."
             }
           }
         }
@@ -109,14 +117,14 @@ In the world of XML, canonicalisation is used to create a consistent copy of the
 In JBL, rather than trying to canonicalise a JSON object, a nested key-value serialization approach is taken. Essentially, a recursive process goes through each object, ordering the keys and flattening the key-value pairs to form a long concatenated string. Take the following JSON sample of a JBL contact:
 
     {
-      "fullName": "Mr. Fred Flinstone",
+      "full_name": "Mr. Fred Flinstone",
       "name": {
         "given": "Fred",
         "surname": "Flinstone",
         "prefix": "Mr."
       },
       /* We can't do BC dates :-) */
-      "birthDate": "1940-02-02",
+      "birth_date": "1940-02-02",
       "address": [
         {
           "label": "home",
@@ -133,7 +141,7 @@ In JBL, rather than trying to canonicalise a JSON object, a nested key-value ser
 
 The following string would be suitable for creating a digest or signature, you'll notice that the comments are missing:
 
-    "addresslabelhomelocalityBedrockstreet345 Cave Stone RoadlabelofficelocalityBedrockstreet1313 Cobblestone WaybirthDate1940-02-02fullNameMr. Fred FlinstonenamegivenFredprefixMr.surnameFlinstone"
+    "addresslabelhomelocalityBedrockstreet345 Cave Stone RoadlabelofficelocalityBedrockstreet1313 Cobblestone Waybirth_date1940-02-02full_nameMr. Fred FlinstonenamegivenFredprefixMr.surnameFlinstone"
 
 Should you want to try generating a hash, the Base64 SHA256 digest is:
 
@@ -192,9 +200,9 @@ In addition to the basic JSON types, JBL adds the concept of "object type throug
 
 Given that JSON has no standard way of dealing with dates, times, and timestamps, JBL provides its own simple convention on how to handle these property types using suffixes. The following suffixes should be used:
 
- * `At` - a timestamp reflecting the current date and time in ISO-8512 format and always in UTC. For example "2012-12-01T12:32:12.546Z".
- * `Date` - the year, month and day, for example: "2012-12-01". Typically to be used for human reference as it does not take into account the time zone.
- * `Time` - the hours, minutes, and seconds of a time, for example: "12:32:12" or "12:32". Again, mainly used for human reference.
+ * `_at` - a timestamp reflecting the current date and time in ISO-8512 format and always in UTC. For example "2012-12-01T12:32:12.546Z".
+ * `_sate` - the year, month and day, for example: "2012-12-01". Typically to be used for human reference as it does not take into account the time zone.
+ * `_time` - the hours, minutes, and seconds of a time, for example: "12:32:12" or "12:32". Again, mainly used for human reference.
 
 
 ### Schema Library

@@ -20,7 +20,7 @@
       "description": "Identity code to uniquily locate the contact in the source system."
       "required": false
     },
-    "fullName": {
+    "full_name": {
       "type": "string",
       "description": "Complete full name of the contact. May be composed of the name or org details.",
       "required": true
@@ -45,14 +45,14 @@
         }
       }
     },
-    "nickName": {
+    "nick_name": {
       "type": "string",
       "description": "Common or internet account name of the contact."
     },
-    "birthDate": {
+    "birth_date": {
       "type": "string"
     },
-    "anniversaryDate": {
+    "anniversary_date": {
       "type": "string"
     },
     "title": {

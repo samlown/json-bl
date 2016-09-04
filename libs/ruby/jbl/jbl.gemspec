@@ -5,7 +5,7 @@ require 'jbl/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "jbl"
-  spec.version       = Jbl::VERSION
+  spec.version       = JBL::VERSION
   spec.authors       = ["Sam Lown"]
   spec.email         = ["me@samlown.com"]
 
@@ -23,6 +23,8 @@ Gem::Specification.new do |spec|
   end
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  # Add a copy of the schemas
+  spec.files        << `cd ../../..; git ls-files -z`.split("\x0").reject { |f| !f.match(%r{^(schemas)/}) }
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]

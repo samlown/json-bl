@@ -1,5 +1,5 @@
 require "jbl/version"
 
-module Jbl
+module JBL
   # Your code goes here...
 end

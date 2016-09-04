@@ -77,12 +77,12 @@
       "description": "Details of the changes made to the document.",
       "required": true,
       "properties": {
-        "createdAt": {
+        "created_at": {
           "type": "string",
           "description": "A time stamp for when the document was first generated or created.",
           "required": true
         },
-        "updatedAt": {
+        "updated_at": {
           "type": "string",
           "description": "A time stamp for when the document was last updated.",
           "required": true
@@ -101,11 +101,15 @@
               },
               "by_alias": {
                 "type": "string",
-                "description": "The alias of the author who performed the change",
+                "description": "The alias of the author who performed the change"
               },
               "location": {
                 "type": "string",
-                "description": "Name of the location where the change was performed.",
+                "description": "Name of the location where the change was performed."
+              },
+              "version": {
+                "type": "string",
+                "description": "Version of the document that resulted from this change."
               },
               "description" {
                 "type": "string",
@@ -154,8 +158,8 @@
           "description": "Actual value of the digital signature obtained from performing the algorithm.",
           "required": true
         },
-        "x509Data": {
-          "$ref": "x509Data",
+        "x509_data": {
+          "$ref": "x509_data",
           "description": "X509 certificate data used to sign the documents data.",
           "required": true
         }

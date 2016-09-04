@@ -1,5 +1,5 @@
 /*
- * X509Data Schema
+ * X509 Data Schema
  *
  * Typically only used in the header of a JBL Document.
  *
@@ -9,19 +9,19 @@
  *
  */
 {
-  "name": "x509Data",
+  "name": "x509_data",
   "description": "X509 certificate data used to sign the document's data.",
   "properties": {
     "serial": {
       "type": "object",
       "required": true,
       "properties": {
-        "issuerName": {
+        "issuer_name": {
           "type": "string",
           "description": "The issuer name or description that complies with section 3 of RFC4514.",
           "required": true
         },
-        "serialNumber": {
+        "serial_number": {
           "type": "string",
           "description": "The serial number of the certificate.",
           "required": true
