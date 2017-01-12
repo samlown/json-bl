@@ -1,0 +1,35 @@
+{
+  "id": "http://json-bl.org/draft-01/header/x509_data#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "X509 certificate data used to sign the document's data based on the XML-DSIG standard: http://www.w3.org/TR/xmldsig-core/#sec-X509Data",
+  "type": "object",
+  "required": [ "serial" ],
+  "properties": {
+    "serial": {
+      "type": "object",
+      "required": [ "issuer_name", "serial_number" ],
+      "properties": {
+        "issuer_name": {
+          "type": "string",
+          "description": "The issuer name or description that complies with section 3 of RFC4514."
+        },
+        "serial_number": {
+          "type": "string",
+          "description": "The serial number of the certificate."
+        }
+      }
+    },
+    "ski": {
+      "type": "string",
+      "description": "Base64 encoded plain (i.e. non-DER-encoded) value of a X509 V.3 SubjectKeyIdentifier extension."
+    },
+    "certificate": {
+      "type": "string",
+      "description": "Base64 encoded string of the X509 certificate used to sign the payload."
+    },
+    "crl": {
+      "type": "string",
+      "description": "Contains a base64-encoded certificate revocation list."
+    }
+  }
+}

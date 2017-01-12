@@ -1,18 +1,18 @@
-# JBL - JSON Business Language
+# JSON-BL - JavaScript Object Notation for Business Language
 
 Because JSON really does mean Universal.
 
-WARNING! THIS IS AN EXPERIMENT AND IS NO WHERE NEAR DRAFT STATUS...
+WARNING! THIS PROJECT UNDER EXPERIMENTAL DEVELOPMENT.
 
 ## Introduction
 
-JBL is a consensus based standard to create and communicate documents relating to business. The key focus is simplicity and portability, but with advanced security definitions built into the language to deal with complex issues like digital signatures, digests, and encryption.
+JSON-BL is a consensus based standard to create and communicate documents relating to business. The key focus is simplicity and portability, but with advanced security definitions built into the language to deal with complex issues like digital signatures, digests, and encryption.
 
-Application interoperability is a major problem which is becoming even more acute as web services sprout up offering more consumer choice. JBL attempts to ease some of these pains by defining a set of JSON schema that can be used to export, import, and send business documents between accounts and projects. It should be easy for example to send an invoice from your accounting platform to that of your client and have that data automatically validated with a digital signature and stored for an accountant to review later.
+Application interoperability is a major problem which is becoming even more acute as web services sprout up offering more consumer choice. JSON-BL attempts to ease some of these pains by defining a set of [JSON Schema](http://json-schema.org) that can be used to export, import, and send business documents between accounts and projects. It should be easy for example to send an invoice from your accounting platform to that of your client and have that data automatically validated with a digital signature and stored for an accountant to review later.
 
-A major part of any great standard are the tools that are available to build and validate the documents it defines. JBL tries to avoid the usual disconnection between the tools and specification by providing libraries for multiple platforms from the start, as part of the standard. It should be easy to build and parse JBL documents that require only a few extra steps to take advantage of complex yet important features like digital signatures.
+A major part of any great standard are the tools that are available to build and validate the documents it defines. JSON-BL tries to avoid the usual disconnection between the tools and specification by providing libraries for multiple platforms from the start, as part of the standard. It should be easy to build and parse JSON-BL documents that require only a few extra steps to take advantage of complex yet important features like digital signatures.
 
-The JBL Standard is essentially composed of:
+The JSON-BL Standard is essentially composed of:
 
  * JSON Schema for building business objects, the information building blocks,
  * a document definition, for sending the objects from one place to another securely, and
@@ -51,6 +51,7 @@ While the JBL standard encourages the use of known object types, the reality is 
 A typical JBL Document may look something like the following:
 
     {
+      "$schema": "http://json-bl.org/draft-01/invoice#",
       "header": {
         "language": "JBL",
         "version": "0.1.0",
