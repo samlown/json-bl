@@ -23,7 +23,7 @@ Much of the standard is of course based on the work of others in standards such 
 
 ## Contributing
 
-JBL is a collaborative project. If you'd like to see your own schema or a change implemented, make the change yourself and send a github pull request.
+JSON-BL is a collaborative project. If you'd like to see your own schema or a change implemented, make the change yourself and send a github pull request.
 
 
 ## Vocabulary
@@ -39,26 +39,23 @@ Why we use snake case or underscores:
  * Consistent file system naming, regardless of case sensitivity.
  * Matches convention of naming database columns or properties (this is a storage format!)
 
-## JBL Document
+## JSON-BL Document
 
-A JBL Document is the basic building block to be able to communicate using JBL. It is the first layer of a file or stream used to pass the JBL object from one person or service to another. At the highest level, it is a simple JSON object consisting of two properties:
+A JSON-BL Document is the basic building block to be able to communicate using JSOB-BL. It is the first layer of a file or stream used to pass the JSON-BL object from one person or service to another. At the highest level, it is a simple JSON object consisting of two properties:
 
- * `header`, a JBL Object of type `header` containing meta-data describing the information payload, and
- * a JBL Object payload.
+ * `header`, a JSON-BL Object of type `header` containing meta-data describing the information payload, and
+ * `body`, a JSON-BL Object with a format that adheres to the body schema defined in the header.
 
-While the JBL standard encourages the use of known object types, the reality is that any payload may be included after the header.
-
-A typical JBL Document may look something like the following:
+A typical JSON-BL Document may look something like the following:
 
     {
-      "$schema": "http://json-bl.org/draft-01/invoice#",
+      "$schema": "http://json-bl.org/draft-01/document#",
       "header": {
-        "language": "JBL",
+        "language": "JSON-BL",
         "version": "0.1.0",
         "generator": "Some App <application.com>",
-        "payload": {
-          "key": "invoice"
-          "schema": "invoice",
+        "body": {
+          "schema": "http://json-blo.org/draft-01/invoice#"
         },
         "authors": [
           {
@@ -95,19 +92,19 @@ A typical JBL Document may look something like the following:
           }
         }
       },
-      "invoice": {
-        /* .... */
+      "body": {
+        
       }
     }
 
 ### Header
 
-The JBL Document header is used to provide the reader, human or computer, to determine relevant information about how to interpret the rest of the document.
+The JSON-BL Document header is used to provide the reader, human or computer, relevant information about how to interpret the rest of the document.
 
 
 ### Security and Data Integrity
 
-Unlike many other standards that address data security through patches or additional standards, data integrity and security are required features for any JBL implementation.
+Unlike many other standards that address data security through patches or additional standards, data integrity and security are required features for any JSON-BL implementation.
 
 #### Preparing the Document for Hashing
 
@@ -115,7 +112,7 @@ To be able to digitally sign or create a digest of a document, it is essential t
 
 In the world of XML, canonicalisation is used to create a consistent copy of the original source document. It provides definition for dealing with code fragments and namespaces that result in a highly complicated process. This gets even worse when trying to canonicalise in memory as the standard requires that all white space and comments be protected.
 
-In JBL, rather than trying to canonicalise a JSON object, a nested key-value serialization approach is taken. Essentially, a recursive process goes through each object, ordering the keys and flattening the key-value pairs to form a long concatenated string. Take the following JSON sample of a JBL contact:
+In JSON-BL, rather than trying to canonicalise a JSON object, a nested key-value serialization approach is taken. Essentially, a recursive process goes through each object, ordering the keys and flattening the key-value pairs to form a long concatenated string. Take the following JSON sample of a JSON-BL contact:
 
     {
       "full_name": "Mr. Fred Flinstone",
@@ -124,7 +121,6 @@ In JBL, rather than trying to canonicalise a JSON object, a nested key-value ser
         "surname": "Flinstone",
         "prefix": "Mr."
       },
-      /* We can't do BC dates :-) */
       "birth_date": "1940-02-02",
       "address": [
         {
@@ -140,7 +136,7 @@ In JBL, rather than trying to canonicalise a JSON object, a nested key-value ser
       ]
     }
 
-The following string would be suitable for creating a digest or signature, you'll notice that the comments are missing:
+The following string would be suitable for creating a digest or signature:
 
     "addresslabelhomelocalityBedrockstreet345 Cave Stone RoadlabelofficelocalityBedrockstreet1313 Cobblestone Waybirth_date1940-02-02full_nameMr. Fred FlinstonenamegivenFredprefixMr.surnameFlinstone"
 
@@ -148,9 +144,9 @@ Should you want to try generating a hash, the Base64 SHA256 digest is:
 
     wKirfO9lIlqZ70cLr1oknmW+axE1uEasT0YonjHm78U=
 
-There is however a small problem with this approach when dealing with a complete JBL Document; the digests and signatures are part of the header that needs to be hashed. JBL gets around this by simply not including the `digest`, `signature`, or `encryption` objects from the header in the flattened string.
+There is however a small problem with this approach when dealing with a complete JSON-BL Document; the digests and signatures are part of the header that needs to be hashed. JSON-BL gets around this by simply not including the `digest`, `signature`, or `encryption` objects from the header in the flattened string.
 
-To summarize, in JBL, a document is prepared for hashing by:
+To summarize, in JSON-BL, a document is prepared for hashing by:
 
  * recursively ordering each object's keys,
  * flattening each objects key-value pair before concatenating them together in order,
@@ -163,7 +159,7 @@ To summarize, in JBL, a document is prepared for hashing by:
 
 #### Digital Signatures
 
-In the XMLDSIG standard and SOAP, a digital signature is generated from a section of the document known as the `SignedInfo` block which includes the digest. The approach in JBL is much simpler; the same hash used to generate the digest is also used to generate the signature. With this approach, the digest and signature can be checked independently of each other removing any uncertainty if the digest or signature do not match the expected result: a valid digest, but an invalid signature most probably means you have an invalid certificate.
+In the XMLDSIG standard and SOAP, a digital signature is generated from a section of the document known as the `SignedInfo` block which includes the digest. The approach in JSON-BL is much simpler; the same hash used to generate the digest is also used to generate the signature. With this approach, the digest and signature can be checked independently of each other removing any uncertainty if the digest or signature do not match the expected result: a valid digest, but an invalid signature most probably means you have an invalid certificate.
 
 
 
@@ -176,9 +172,9 @@ In the XMLDSIG standard and SOAP, a digital signature is generated from a sectio
 
 
 
-## JBL Object
+## JSON-BL Object
 
-A JBL Object is a regular JSON object that conforms to a specific JSON Schema defined by the JBL standard.
+A JSON-BL Object is a regular JSON object that conforms to a specific JSON Schema defined by the JSON-BL standard.
 
 Objects primarily consist of properties of basic types defined by JSON:
 
@@ -188,10 +184,10 @@ Objects primarily consist of properties of basic types defined by JSON:
  * `array` - an ordered sequence of values or objects, comma-separated and enclosed in square brackets; the values do not need to be of the same type.
  * `object` - an unordered collection of key:value pairs with the ':' character separating the key and the value, comma-separated and enclosed in curly braces; the keys must be strings and should be distinct from each other.
 
-In addition to the basic JSON types, JBL adds the concept of "object type through property". This is to say, the property or key used to point to the object, tells us which schema is used to describe the contents. The following section on JBL Schema describes object types.
+In addition to the basic JSON types, JSON-BL adds the concept of "object type through property". This is to say, the property or key used to point to the object, tells us which schema is used to describe the contents. The following section on JSON-BL Schema describes object types.
 
 
-### JBL Object Schema
+### JSON-BL Object Schema
 
 
 
@@ -199,7 +195,7 @@ In addition to the basic JSON types, JBL adds the concept of "object type throug
 
 ### Handling Date and Time
 
-Given that JSON has no standard way of dealing with dates, times, and timestamps, JBL provides its own simple convention on how to handle these property types using suffixes. The following suffixes should be used:
+Given that JSON has no standard way of dealing with dates, times, and timestamps, JSON-BL provides its own simple convention on how to handle these property types using suffixes. The following suffixes should be used:
 
  * `_at` - a timestamp reflecting the current date and time in ISO-8512 format and always in UTC. For example "2012-12-01T12:32:12.546Z".
  * `_sate` - the year, month and day, for example: "2012-12-01". Typically to be used for human reference as it does not take into account the time zone.

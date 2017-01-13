@@ -1,0 +1,47 @@
+---
+#
+# Address Schema
+#
+# Details for a physical location usually reachable by a postal service.
+#
+# Property names are loosly based on the xCard file format.
+#
+
+$schema: "http://json-bl.org/draft-01/document#"
+id: "{{ json-bl-verion-url }}/address#"
+description: Postal details for a phyiscal entity.
+required:
+  - locality
+  - region
+properties:
+  label:
+    type: string
+    description: Description of address, such as home, work, etc.
+  post_office_box:
+    type: string
+    description: Box number or code for the post office located at the address.
+  street:
+    type: string
+    description: First line of street.
+  extended:
+    type: string
+    description: Extended street address details.
+  locality:
+    type: string
+    description: The village, town, district, or city.
+  region:
+    type: string
+    description: Province, County, or State.
+  code:
+    type: string
+    description: Post code or ZIP.
+  country_code:
+    type: string
+    description: ISO Country code of the address.
+    maximumLength: 2
+  country_name:
+    type: string
+    description: Name of the country.
+dependencies:
+  post_office_box: street
+  extended_street: street
