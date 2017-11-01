@@ -1,0 +1,10 @@
+---
+#
+# The Spanish Invoice.
+#
+# Regional differences based on factura-e standard.
+#
+id: "{{ json-bl-version-url }}/l10n/es/invoice"
+$extends:
+  - "{{ json-bl-version-url }}/invoice"
+

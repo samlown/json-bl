@@ -1,16 +1,17 @@
-# JSON-BL - JavaScript Object Notation for Business Language
+# JSON-BL
+## JavaScript Object Notation for Business Language
 
-Because JSON really does mean Universal.
+Because JSON is universal.
 
-WARNING! THIS PROJECT UNDER EXPERIMENTAL DEVELOPMENT.
+NOTICE: THIS PROJECT UNDER EXPERIMENTAL DEVELOPMENT.
 
 ## Introduction
 
 JSON-BL is a consensus based standard to create and communicate documents relating to business. The key focus is simplicity and portability, but with advanced security definitions built into the language to deal with complex issues like digital signatures, digests, and encryption.
 
-Application interoperability is a major problem which is becoming even more acute as web services sprout up offering more consumer choice. JSON-BL attempts to ease some of these pains by defining a set of [JSON Schema](http://json-schema.org) that can be used to export, import, and send business documents between accounts and projects. It should be easy for example to send an invoice from your accounting platform to that of your client and have that data automatically validated with a digital signature and stored for an accountant to review later.
+Application interoperability for business related documents is tough as there are few standards written in a clear and concise format that take into account regional variations. These issues are becoming even more acute as web services sprout up offering more consumer choice. JSON-BL attempts to ease some of the pains by defining a set of [JSON Schema](http://json-schema.org) that can be used to export, import, and send business documents between accounts and projects. It should be easy for example to send an invoice from your accounting platform to that of your client and have that data automatically validated with a digital signature and stored for an accountant to review later.
 
-A major part of any great standard are the tools that are available to build and validate the documents it defines. JSON-BL tries to avoid the usual disconnection between the tools and specification by providing libraries for multiple platforms from the start, as part of the standard. It should be easy to build and parse JSON-BL documents that require only a few extra steps to take advantage of complex yet important features like digital signatures.
+A major part of any great standard are the tools that are available to build and validate the documents it defines. JSON-BL tries to avoid the usual disconnection between the tools and specification by providing libraries for multiple platforms from the start, as part of the standard. It should be easy to build and parse JSON-BL documents that require only a few extra steps to take advantage of complex yet important features in business like digital signatures.
 
 The JSON-BL Standard is essentially composed of:
 
@@ -50,12 +51,12 @@ A typical JSON-BL Document may look something like the following:
 
     {
       "$schema": "http://json-bl.org/draft-01/document#",
-      "header": {
+      "head": {
         "language": "JSON-BL",
         "version": "0.1.0",
         "generator": "Some App <application.com>",
         "body": {
-          "schema": "http://json-blo.org/draft-01/invoice#"
+          "schema": "http://json-blo.org/draft-01/documents/invoice#"
         },
         "authors": [
           {
@@ -93,7 +94,7 @@ A typical JSON-BL Document may look something like the following:
         }
       },
       "body": {
-        
+        // The of the document
       }
     }
 

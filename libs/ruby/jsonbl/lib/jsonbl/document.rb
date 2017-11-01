@@ -1,4 +1,4 @@
-module JBL
+module JSONBL
 
   class Document
 
