@@ -3,7 +3,7 @@
 
 Because JSON is universal.
 
-NOTICE: DISCONTINUED. The initial ideas and objectives of this project turned into [GOBL](https://github.com/invopop/gobl), please checkout [the GOBL homepage](https://gobl.org) for more details.
+NOTICE: DISCONTINUED. The initial ideas and objectives of this project turned into [GOBL](https://github.com/invopop/gobl), please checkout [the Go Business Language homepage](https://gobl.org) for more details.
 
 ## Introduction
 
